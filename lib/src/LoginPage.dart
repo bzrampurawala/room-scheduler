@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:room_scheduler/utils/Colors.dart';
 import 'package:room_scheduler/utils/MyButton.dart';
 import 'package:room_scheduler/utils/Logo.dart';
-import 'package:room_scheduler/utils/MyTextField.dart';
+import 'package:room_scheduler/utils/CustomEditText.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -14,17 +15,18 @@ class LoginPage extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Color(0xffF49E4C),
+        backgroundColor: RoomSchedulerColors().orange(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Logo(),
-          MyTextField(label: "email", hint: "user@example.com", isPass: false),
+          CustomEditText(
+              label: "email", hint: "user@example.com", isPass: false),
           SizedBox(
             height: 20,
           ),
-          MyTextField(label: "password", hint: "password", isPass: true),
+          CustomEditText(label: "password", hint: "password", isPass: true),
           SizedBox(
             height: 50,
           ),

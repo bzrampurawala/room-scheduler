@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_scheduler/utils/Colors.dart';
 
 class MyButton extends StatelessWidget {
   var onTap;
@@ -14,7 +15,7 @@ class MyButton extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Color(0xffF49E4C)),
+                color: RoomSchedulerColors().orange()),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 60),
               child: Text(

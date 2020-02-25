@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:room_scheduler/src/DashBoard.dart';
 import 'package:room_scheduler/src/LoginPage.dart';
 
-import 'src/LoginPage.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
