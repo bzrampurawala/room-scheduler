@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:room_scheduler/src/DashBoard.dart';
 import 'package:room_scheduler/src/LoginPage.dart';
 
+import 'src/LoginPage.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Room Scheduling',
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginPage(),
