@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  MyTextField({Key key, this.label, this.hint, this.isPass}) : super(key: key);
+class CustomEditText extends StatelessWidget {
+  CustomEditText({Key key, this.label, this.hint, this.isPass}) : super(key: key);
 
   String label;
   String hint;
