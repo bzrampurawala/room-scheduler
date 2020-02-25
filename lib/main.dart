@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:room_scheduler/src/DashBoard.dart';
+import 'package:room_scheduler/src/LoginPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,6 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/dashboard': (context) => Dashboard(),
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
