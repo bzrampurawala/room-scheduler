@@ -3,6 +3,7 @@ import 'package:room_scheduler/utils/Colors.dart';
 import 'package:room_scheduler/utils/MyButton.dart';
 import 'package:room_scheduler/utils/Logo.dart';
 import 'package:room_scheduler/utils/CustomEditText.dart';
+import 'package:room_scheduler/utils/Strings.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          "Login/Register",
+          Strings.loginPageTitle,
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -22,11 +23,12 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           Logo(),
           CustomEditText(
-              label: "email", hint: "user@example.com", isPass: false),
+              label: Strings.email, hint: Strings.emailHint, isPass: false),
           SizedBox(
             height: 20,
           ),
-          CustomEditText(label: "password", hint: "password", isPass: true),
+          CustomEditText(
+              label: Strings.password, hint: Strings.password, isPass: true),
           SizedBox(
             height: 50,
           ),
