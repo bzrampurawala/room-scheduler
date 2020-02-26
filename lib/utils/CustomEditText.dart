@@ -4,9 +4,9 @@ class CustomEditText extends StatelessWidget {
   CustomEditText({Key key, this.label, this.hint, this.isPass})
       : super(key: key);
 
-  String label;
-  String hint;
-  bool isPass;
+  final String label;
+  final String hint;
+  final bool isPass;
   @override
   Widget build(BuildContext context) {
     return Container(

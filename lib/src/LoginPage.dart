@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
             height: 50,
           ),
           MyButton(
+            text: "Login",
             onTap: () {
               Navigator.pushNamed(context, '/dashboard');
             },
