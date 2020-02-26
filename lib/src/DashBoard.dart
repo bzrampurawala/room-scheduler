@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:room_scheduler/utils/Strings.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -27,10 +28,13 @@ class DashBoardState extends State<Dashboard> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("List")),
-          BottomNavigationBarItem(icon: Icon(Icons.add), title: Text("Add")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text("Profile")),
+              icon: Icon(Icons.list), title: Text(Strings.bottomNavListTitle)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add), title: Text(Strings.bottomNavAddTitle)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text(Strings.bottomNavProfileTitle)),
         ],
         onTap: (int index) {
           setState(() {

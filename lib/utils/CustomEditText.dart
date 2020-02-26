@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomEditText extends StatelessWidget {
-  CustomEditText({Key key, this.label, this.hint, this.isPass}) : super(key: key);
+  CustomEditText({Key key, this.label, this.hint, this.isPass})
+      : super(key: key);
 
   String label;
   String hint;
