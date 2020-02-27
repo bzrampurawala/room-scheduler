@@ -6,5 +6,6 @@ class Strings{
   static String loginPageTitle = "Login/Register";
   static String bottomNavAddTitle = "Add";
   static String bottomNavListTitle = "List";
-  static String bottomNavProfileTitle = "List";
+  static String bottomNavProfileTitle = "Profile";
+  static String addScheduleTitle = "Add Schedule";
 }
