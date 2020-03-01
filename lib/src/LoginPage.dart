@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: RoomSchedulerColors().orange(),
+        backgroundColor: RoomSchedulerColors.orange,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
