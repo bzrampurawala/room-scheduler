@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:room_scheduler/utils/Colors.dart';
+import 'package:room_scheduler/utils/FirebaseKeys.dart';
 import 'package:room_scheduler/utils/MyButton.dart';
 import 'package:room_scheduler/utils/Strings.dart';
 
@@ -137,7 +138,7 @@ class ScheduleAdderState extends State<ScheduleAdder> {
             onTap: () {
               FirebaseDatabase()
                   .reference()
-                  .child("rooms")
+                  .child(FirebaseKeys.roomsKey)
                   .child(this.selectedRoom)
                   .push()
                   .set({
