@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:room_scheduler/src/AddSchedule.dart';
+import 'package:room_scheduler/src/RoomTimeline.dart';
 import 'package:room_scheduler/utils/Strings.dart';
 
 class Dashboard extends StatefulWidget {
@@ -13,9 +14,7 @@ class DashBoardState extends State<Dashboard> {
   int currIndex = 0;
   String selectedRoom;
   List<Widget> allChildren = [
-    Container(
-      color: Colors.green,
-    ),
+    RoomTimeline(),
     ScheduleAdder(),
     Container(
       color: Colors.yellow,
