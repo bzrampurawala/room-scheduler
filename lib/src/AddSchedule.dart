@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:room_scheduler/utils/Colors.dart';
+import 'package:room_scheduler/utils/CustomEditText.dart';
 import 'package:room_scheduler/utils/FirebaseKeys.dart';
 import 'package:room_scheduler/utils/MyButton.dart';
 import 'package:room_scheduler/utils/Strings.dart';
@@ -26,6 +29,7 @@ class ScheduleAdderState extends State<ScheduleAdder> {
   String selectedRoom = "Room 1";
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now().add(Duration(hours: 1));
+  String desc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,9 +81,8 @@ class ScheduleAdderState extends State<ScheduleAdder> {
           SizedBox(
             height: 30,
           ),
-          Text(this.selectedRoom),
           SizedBox(
-            height: 200,
+            height: 100,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -131,7 +134,21 @@ class ScheduleAdderState extends State<ScheduleAdder> {
             ],
           ),
           SizedBox(
-            height: 100,
+            height: 50,
+          ),
+          CustomEditText(
+            label: "Description",
+            hint: "Android Team's Standup",
+            isPass: false,
+            onChanged: (String text) {
+              log("setting desc $text");
+              setState(() {
+                this.desc = text;
+              });
+            },
+          ),
+          SizedBox(
+            height: 50,
           ),
           MyButton(
             text: "Book",
@@ -143,7 +160,8 @@ class ScheduleAdderState extends State<ScheduleAdder> {
                   .push()
                   .set({
                 "startTime": startTime.toString(),
-                "endTime": endTime.toString()
+                "endTime": endTime.toString(),
+                "desc": "Android Team's Standup"
               });
             },
           )
