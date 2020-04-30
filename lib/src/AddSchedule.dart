@@ -7,6 +7,7 @@ import 'package:room_scheduler/utils/Colors.dart';
 import 'package:room_scheduler/utils/CustomEditText.dart';
 import 'package:room_scheduler/utils/FirebaseKeys.dart';
 import 'package:room_scheduler/utils/MyButton.dart';
+import 'package:room_scheduler/utils/Schedule.dart';
 import 'package:room_scheduler/utils/Strings.dart';
 
 class ScheduleAdder extends StatefulWidget {
@@ -30,6 +31,7 @@ class ScheduleAdderState extends State<ScheduleAdder> {
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now().add(Duration(hours: 1));
   String desc;
+  List<Schedule> allSchedules = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +77,7 @@ class ScheduleAdderState extends State<ScheduleAdder> {
                 setState(() {
                   selectedRoom = room;
                 });
+                this.fetchSchedules();
               },
             ),
           ),
@@ -153,20 +156,85 @@ class ScheduleAdderState extends State<ScheduleAdder> {
           MyButton(
             text: "Book",
             onTap: () {
-              FirebaseDatabase()
-                  .reference()
-                  .child(FirebaseKeys.roomsKey)
-                  .child(this.selectedRoom)
-                  .push()
-                  .set({
-                "startTime": startTime.toString(),
-                "endTime": endTime.toString(),
-                "desc": "Android Team's Standup"
-              });
+              Schedule currSchedule = Schedule(this.startTime.toString(),
+                  this.endTime.toString(), this.desc);
+              if (isValidSchedule(currSchedule)) {
+                FirebaseDatabase()
+                    .reference()
+                    .child(FirebaseKeys.roomsKey)
+                    .child(this.selectedRoom)
+                    .push()
+                    .set({
+                  "startTime": startTime.toString(),
+                  "endTime": endTime.toString(),
+                  "desc": "this.desc"
+                }).then((onValue) {
+                  fetchSchedules();
+                });
+              } else {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Invalid Schedule"),
+                      );
+                    });
+              }
             },
           )
         ],
       )),
     );
+  }
+
+  void fetchSchedules() {
+    List<Schedule> allSchedules = [];
+    FirebaseDatabase.instance
+        .reference()
+        .child("rooms")
+        .child(selectedRoom)
+        .once()
+        .then((DataSnapshot snapshot) {
+      Map<dynamic, dynamic> values = snapshot.value;
+      values.forEach((key, val) {
+        allSchedules
+            .add(Schedule(val["startTime"], val["endTime"], val["desc"]));
+      });
+      setState(() {
+        this.allSchedules = allSchedules;
+        log(allSchedules.length.toString());
+      });
+    });
+  }
+
+  bool isValidSchedule(Schedule newSchedule) {
+
+    DateTime newStartTime = DateTime.parse(newSchedule.startTime);
+    DateTime newEndTime = DateTime.parse(newSchedule.endTime);
+    log("allSchedules size : " + this.allSchedules.length.toString());
+    bool retVal = true;
+    this.allSchedules.forEach((schedule) {
+      DateTime startTime = DateTime.parse(schedule.startTime);
+      DateTime endTime = DateTime.parse(schedule.endTime);
+      log("comparing" + startTime.compareTo(newStartTime).toString());
+      if (startTime.compareTo(newStartTime) > 0 &&
+          endTime.compareTo(newEndTime) > 0) {
+        log("invallid");
+        retVal = false;
+      }
+      if (startTime.compareTo(newStartTime) > 0 &&
+          endTime.compareTo(newEndTime) < 0) {
+        log("invalid");
+        retVal = false;
+      }
+    });
+    log("valid");
+    return retVal;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSchedules();
   }
 }

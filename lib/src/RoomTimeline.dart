@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:room_scheduler/src/SingleSchedule.dart';
 import 'package:room_scheduler/utils/Colors.dart';
+import 'package:room_scheduler/utils/Schedule.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 
@@ -116,23 +117,10 @@ class _RoomTimelineState extends State<RoomTimeline> {
 
   //TO-DO
   void sortSchedules(List<Schedule> items) {
-    items.sort(mySortFunction);
-  }
-
-  int mySortFunction(Schedule a, Schedule b) {
-    var dateA = DateTime.parse(a.startTime);
-    var dateB = DateTime.parse(b.startTime);
-    return dateA.compareTo(dateB);
-  }
-}
-
-class Schedule {
-  String startTime;
-  String endTime;
-  String desc;
-  Schedule(String start, String end, String desc) {
-    this.startTime = start;
-    this.endTime = end;
-    this.desc = desc;
+    items.sort((a, b) {
+      var dateA = DateTime.parse(a.startTime);
+      var dateB = DateTime.parse(b.startTime);
+      return dateA.compareTo(dateB);
+    });
   }
 }
